@@ -1,7 +1,9 @@
 input.onButtonPressed(Button.A, function () {
-    A_Press = 1
+    A_Press += 1
+    B_Press = 0
 })
 input.onButtonPressed(Button.B, function () {
+    A_Press = 0
     B_Press += 1
 })
 let B_Press = 0
@@ -18,8 +20,10 @@ loops.everyInterval(1000, function () {
         Room_have_ppl_mins = 0
     }
     basic.showNumber(Room_have_ppl_mins)
-    if (Room_have_ppl_mins > 15) {
+    if (Room_have_ppl_mins >= 15) {
         music.setVolume(127)
         music.play(music.builtinPlayableSoundEffect(soundExpression.giggle), music.PlaybackMode.LoopingInBackground)
+    } else {
+        music.stopMelody(MelodyStopOptions.All)
     }
 })
